@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"
+    import="com.cs336.pkg.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 
@@ -10,6 +11,21 @@
 		<title>Railway</title>
 	</head>
 	<body>
+	
+	<% try {
+	
+			//get the database connection
+			ApplicationDB db = new ApplicationDB();	
+			Connection con = db.getConnection();	
+			
+
+		%>
+		<%} catch (Exception e) {
+			out.print(e);
+		}%>
+	
+	
+	
 		<div id="login">
 			<p>Please login here:</p>
 			<form action="login.jsp" method="post">

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Train Schedules</title>
 </head>
 <body>
 <% try {
@@ -14,7 +14,7 @@
 			//get the database connection
 			ApplicationDB db = new ApplicationDB();	
 			Connection con = db.getConnection();	
-			out.println("hello");
+			out.println("If you're customer with an account, login here:");
 			
 
 		%>
@@ -29,7 +29,7 @@
                 </tr>
 
             </table>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Login" />
 	
 				
 

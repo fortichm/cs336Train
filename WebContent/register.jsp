@@ -16,7 +16,7 @@
 				Connection con = db.getConnection();
 				
 				//Create SQL statement
-				Statement stmt = con.creatStatement();
+				Statement stmt = con.createStatement();
 				
 				//Getting parameters
 				String firstName = request.getParameter("firstName");
@@ -26,18 +26,18 @@
 				String email = request.getParameter("email");
 				
 				//Insert statement into Customer Table
-				String insert = "INSERT INTO Customer(Username, Password, FirstName, LastName, EmailAddress)" +
+				String insert = "INSERT INTO Customer(Username, Password, FirstName, LastName, EmailAddress)" 
 						+ "VALUES (?, ?, ?, ?, ?)";
 				
 				//Creating prepared statement
 				PreparedStatement ps = con.prepareStatement(insert);
 				
 				//Adding parameters to statement
-				ps.setString(username, 1);
-				ps.setString(password, 2);
-				ps.setString(firstName, 3);
-				ps.setString(lastName, 4);
-				ps.setString(email, 5);
+				ps.setString(1,username);
+				ps.setString(2,password);
+				ps.setString(3,firstName);
+				ps.setString(4,lastName);
+				ps.setString(5,email);
 				
 				//Running query
 				ps.executeUpdate();
