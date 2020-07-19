@@ -26,8 +26,8 @@
 	
 	
 	
-		<div id="login">
-			<p>Please login here:</p>
+		<div id="customerLogin">
+			<p>Customers, please login here:</p>
 			<form action="login.jsp" method="post">
 				<p>
 					Username:
@@ -37,12 +37,20 @@
 					Password:
 					<input type ="password" name="pass">
 				</p>
-				<p>Please select user type:</p>
-				<select>
-					<option value="customer">Customer</option>
-					<option value="rep">Representative</option>
-					<option value="admin">Administrator</option>
-				</select>
+				<p> <input type="submit" value="Login"> </p>
+			</form>
+		</div>
+		<div id="employeeLogin">
+			<p>Employees, please login here: </p>
+			<form action="employeeLogin.jsp" method="post">
+				<p>
+					Username:
+					<input type="text" name="employeeUser">
+				</p>
+				<p>
+					Password:
+					<input type ="password" name="employeePass">
+				</p>
 				<p> <input type="submit" value="Login"> </p>
 			</form>
 		</div>
