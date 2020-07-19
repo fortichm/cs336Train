@@ -27,11 +27,13 @@
 				ResultSet res = stmt.executeQuery(str);
 				
 				if(res.next()){
-					out.println(user + "logged in");
+					out.println(user + " logged in");
 				}else{
 					out.println("invalid username or password, try again");
 				}
 				
+				res.close();
+				stmt.close();
 				con.close();
 				
 			}catch(Exception e) {

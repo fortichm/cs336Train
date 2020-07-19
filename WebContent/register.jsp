@@ -43,6 +43,8 @@
 				ps.executeUpdate();
 				
 				//Closing connection
+				res.close();
+				stmt.close();
 				con.close();
 			} catch (Exception e) {
 				out.print(e);
