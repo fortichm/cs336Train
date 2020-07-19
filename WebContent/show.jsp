@@ -15,9 +15,21 @@
 			ApplicationDB db = new ApplicationDB();	
 			Connection con = db.getConnection();	
 			out.println("hello");
+			
 
 		%>
-			
+			<table style="with: 100%">
+                <tr>
+                    <td>UserName</td>
+                    <td><input type="text" name="username" /></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password" /></td>
+                </tr>
+
+            </table>
+            <input type="submit" value="Submit" />
 	
 				
 
