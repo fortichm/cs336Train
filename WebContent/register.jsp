@@ -15,8 +15,7 @@
 				ApplicationDB db = new ApplicationDB();
 				Connection con = db.getConnection();
 				
-				//Create SQL statement
-				Statement stmt = con.createStatement();
+				
 				
 				//Getting parameters
 				String firstName = request.getParameter("firstName");
@@ -25,27 +24,42 @@
 				String password = request.getParameter("newPass");
 				String email = request.getParameter("email");
 				
-				//Insert statement into Customer Table
-				String insert = "INSERT INTO Customer(Username, Password, FirstName, LastName, EmailAddress)" 
-						+ "VALUES (?, ?, ?, ?, ?)";
 				
-				//Creating prepared statement
-				PreparedStatement ps = con.prepareStatement(insert);
+				String str = "SELECT * FROM Customer where username='" + username + "' OR EmailAddress='" + email +"'";
+				Statement stmt0 = con.createStatement();
+				ResultSet res = stmt0.executeQuery(str);
 				
-				//Adding parameters to statement
-				ps.setString(1,username);
-				ps.setString(2,password);
-				ps.setString(3,firstName);
-				ps.setString(4,lastName);
-				ps.setString(5,email);
+				if(res.next()){
+					out.println("user exists!, try again");
+					stmt0.close();
+					res.close();		
+				}else{
 				
-				//Running query
-				ps.executeUpdate();
-				
+					//Create SQL statement
+					Statement stmt = con.createStatement();
+					//Insert statement into Customer Table
+					String insert = "INSERT INTO Customer(Username, Password, FirstName, LastName, EmailAddress)" 
+							+ "VALUES (?, ?, ?, ?, ?)";
+					
+					//Creating prepared statement
+					PreparedStatement ps = con.prepareStatement(insert);
+					
+					//Adding parameters to statement
+					ps.setString(1,username);
+					ps.setString(2,password);
+					ps.setString(3,firstName);
+					ps.setString(4,lastName);
+					ps.setString(5,email);
+					
+					//Running query
+					ps.executeUpdate();
+					stmt.close();
+				}
 				//Closing connection
-				res.close();
-				stmt.close();
+				
+		
 				con.close();
+				
 			} catch (Exception e) {
 				out.print(e);
 				out.print("Error in registration");
