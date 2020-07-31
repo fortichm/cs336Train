@@ -11,21 +11,33 @@
 		<title>Railway</title>
 	</head>
 	<body>
-	
-	<% try {
+		<% try{
 	
 			//get the database connection
 			ApplicationDB db = new ApplicationDB();	
 			Connection con = db.getConnection();	
-			
-
 		%>
 		<%} catch (Exception e) {
 			out.print(e);
 		}%>
-	
-	
-	
+		<div id="search">
+			<p>Search train schedules: </p>
+			<form action="search.jsp" method ="post">
+				<p>
+					Origin:
+					<input type="text" name="origin">
+				</p>
+				<p>
+					Destination:
+					<input type="text" name="destination">
+				</p>
+				<p>
+					Travel Date:
+					<input type="text" name="date">
+				</p>
+				<p> <input type="submit" value="Search"> </p>
+			</form>
+		</div>
 		<div id="customerLogin">
 			<p>Customers, please login here:</p>
 			<form action="login.jsp" method="post">
