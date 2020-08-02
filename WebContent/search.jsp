@@ -43,8 +43,8 @@
 			}
 			
 		%>
-	
 		
+
 		<p>
 			<a href="index.jsp">Click here to return to home page.</a>
 		</p>

@@ -21,7 +21,7 @@
 			out.print(e);
 		}%>
 		<div id="search">
-			<p>Search train schedules: </p>
+			<p>Search our train schedules!: </p>
 			<form action="search.jsp" method ="post">
 				<p>
 					Origin:
@@ -39,7 +39,7 @@
 			</form>
 		</div>
 		<div id="customerLogin">
-			<p>Customers, please login here:</p>
+			<p>Registered Customers, please login here:</p>
 			<form action="login.jsp" method="post">
 				<p>
 					Username:
@@ -67,7 +67,7 @@
 			</form>
 		</div>
 		<div id="registration">
-			<p>If you are a customer without an account, sign up here:</p>
+			<p>If you are a customer without an account, sign up here to make a reservation:</p>
 			<form action = "register.jsp" method="post">
 				<p>
 					First Name:

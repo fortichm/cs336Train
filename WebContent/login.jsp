@@ -42,7 +42,49 @@
 			}
 			
 		%>
-	
+		<div id="reservation">
+			<p>Make a reservation: </p>
+			<form action="reservCheckOut.jsp" method ="post">
+				<p>
+					Origin:
+					<input type="text" name="origin">
+				</p>
+				<p>
+					Destination:
+					<input type="text" name="destination">
+				</p>
+				<p>
+					Travel Date:
+					<input type="text" name="date">
+				</p>
+				<p>
+					Please indicate whether the ticket is for a:
+					"child", "senior", or someone who is "disabled",
+					for a discount:
+					<input type="text" name="discount">
+				</p>
+				
+				<p> <input type="submit" value="Reserve"> </p>
+			</form>
+		</div>
+		
+		<p> 
+		View Current and Past Reservations
+		<input type="submit" value="View"> 
+		</p>
+		
+		<div id="cancelReserv">
+			<p>Cancel Reservation</p>
+			<form action="reservCheckOut.jsp" method="post">
+			
+				<p>
+					Please input reservation number to be cancelled
+					<input type="text" name="resnum">
+				</p>
+				
+				<p> <input type="submit" value="Cancel"> </p>
+			</form>
+		</div>
 		
 		<p>
 			<a href="index.jsp">Click here to logout and return to home page.</a>
