@@ -35,6 +35,13 @@
 					Travel Date:
 					<input type="text" name="date">
 				</p>
+				<p> Sort by:
+					<select name="sortBy" id="sortBy">
+					<option value="arrival"> Arrival time </option>
+					<option value="departure"> Departure time </option>
+					<option value="fare"> Fare </option>
+					</select> 
+				</p>
 				<p> <input type="submit" value="Search"> </p>
 			</form>
 		</div>
