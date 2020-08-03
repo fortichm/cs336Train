@@ -60,17 +60,9 @@
 			</form>
 		</div>
 		<div id="employeeLogin">
-			<p>Employees, please login here: </p>
-			<form action="employeeLogin.jsp" method="post">
-				<p>
-					Username:
-					<input type="text" name="employeeUser">
-				</p>
-				<p>
-					Password:
-					<input type ="password" name="employeePass">
-				</p>
-				<p> <input type="submit" value="Login"> </p>
+			<p>Employees, please click button below for employee login page: </p>
+			<form action="employeePortal.jsp" method="post">
+				<button type=submit>Go</button>
 			</form>
 		</div>
 		<div id="registration">

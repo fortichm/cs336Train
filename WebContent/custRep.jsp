@@ -27,14 +27,9 @@
 				ResultSet res = stmt.executeQuery(str);
 				
 				if(res.next()){
-					
 					out.println("Welcome Employee " + user + " logged in");
-					
-					
 				}else{
-					
 					out.println("invalid username or password, try again");
-							
 				}
 				
 				res.close();
@@ -47,10 +42,37 @@
 			}
 			
 		%>
-	
-		
-		<p>
-			<a href="index.jsp">Click here to logout and return to home page.</a>
-		</p>
+		<section>
+			<h2>Train Schedule Editor</h2>
+			<form action="scheduleEditor.jsp" method="post">
+				<p>Transit Line Name:<input type="text" name="routeName"></p>
+				<p>Train ID:<input type="text" name="trainID"></p>
+				<p>Arrival Time:<input type="text" name="arrivalTime"></p>
+				<p>Departure Time:<input type="text" name="departureTime"></p>
+				<p>Fare:<input type="text" name="fare"></p>
+			</form>
+			</section>
+		<section>
+			<h2>Customer Service Message Service</h2>
+			<p>TODO: messaging features</p>
+		</section>
+		<section>
+			<h2>List of Train Schedules for a Given Station</h2>
+			<form action="produceList.jsp" method="post">
+				<p>Enter train station:<input type="text" name="station"></p>
+				<input type="submit" value="Produce List">
+			</form>
+		</section>
+		<section>
+			<h2>List of Customers Reserved for Given Transit Line</h2>
+			<form action="produceList.jsp" method="post">
+				<p>Enter transit line name:<input type="text" name="route"></p>
+				<p>Enter date:<input type="text" name="date"></p>
+				<input type="submit" value="Produce List">
+			</form>
+		</section>
+		<form action="index.jsp" method="post">
+			<button type="submit">Log Out</button>
+		</form>
 	</body>
 </html>
