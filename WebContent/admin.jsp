@@ -47,7 +47,80 @@
 			}
 			
 		%>
-	
+		
+		
+		<div id="registration">
+			<p>Add Customer Representative</p>
+			<form action = "custRepReg.jsp" method="post">
+				<p>
+					SSN:
+					<input type="text" name="SSN">
+				</p>
+				<p>
+					Enter desired username:
+					<input type="text" name="newUser">
+				</p>
+				<p>
+					Enter desired password:
+					<input type="password" name="newPass">
+				</p>
+				<p>
+					First Name:
+					<input type="text" name="firstName">
+				</p>
+				<p>
+					Last Name:
+					<input type="text" name="lastName">
+				</p>
+				<p><input type="submit" value="Add"></p>
+			</form>
+		</div>
+		
+		<div id="delete">
+			<p>Delete an active Customer Representative</p>
+			<form action = "deleteRep.jsp" method="post">
+				<p>
+					Enter SSN:
+					<input type="text" name="SSN">
+				</p>
+				<p>
+					Enter username:
+					<input type="text" name="user">
+				</p>
+				
+				<p><input type="submit" value="Delete"></p>
+			</form>
+		</div>
+		
+		<div id="edit">
+			<p>Edit an active Customer Representative</p>
+			<form action = "editRep.jsp" method="post">
+				<p>
+					Enter their SSN:
+					<input type="text" name="SSN">
+				</p>
+				<p>
+					Enter their username:
+					<input type="text" name="user">
+				</p>
+				<p>Enter new parameters</p>
+				<p>
+					Enter new password:
+					<input type="password" name="newPass">
+				</p>
+				<p>
+					Change First Name:
+					<input type="text" name="firstName">
+				</p>
+				<p>
+					Change Last Name:
+					<input type="text" name="lastName">
+				</p>
+		
+				<p><input type="submit" value="Edit"></p>
+			</form>
+		</div>
+		
 		
 		<p>
 			<a href="index.jsp">Click here to logout and return to home page.</a>
