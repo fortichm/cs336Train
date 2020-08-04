@@ -44,14 +44,34 @@
 		%>
 		<section>
 			<h2>Train Schedule Editor</h2>
-			<form action="scheduleEditor.jsp" method="post">
-				<p>Transit Line Name:<input type="text" name="routeName"></p>
-				<p>Train ID:<input type="text" name="trainID"></p>
-				<p>Arrival Time:<input type="text" name="arrivalTime"></p>
-				<p>Departure Time:<input type="text" name="departureTime"></p>
-				<p>Fare:<input type="text" name="fare"></p>
+			<h3>Add Train Schedule</h3>
+			<form action="scheduleAdd.jsp" method="post">
+				<p>Transit Line Name: <input type="text" name="routeName"></p>
+				<p>Train ID: <input type="text" name="trainID"></p>
+				<p>Arrival Time: <input type="text" name="arrivalTime"></p>
+				<p>Departure Time: <input type="text" name="departureTime"></p>
+				<p>Fare: <input type="text" name="fare"></p>
+				<input type="submit" value="Add">
 			</form>
-			</section>
+			<h3>Delete Train Schedule</h3>
+			<form action="scheduleDelete.jsp" method="post">
+				<p>Transit Line Name: <input type="text" name="routeName"></p>
+				<p>Train ID: <input type="text" name="trainID"></p>
+				<p>Arrival Time: <input type="text" name="arrivalTime"></p>
+				<p>Departure Time: <input type="text" name="departureTime"></p>
+				<p>Fare: <input type="text" name="fare"></p>
+				<input type="submit" value="Delete">
+			</form>
+			<h3>Edit Train Schedule</h3>
+			<form action="scheduleEdit.jsp" method="post">
+				<p>Transit Line Name: <input type="text" name="routeName"></p>
+				<p>Train ID: <input type="text" name="trainID"></p>
+				<p>Arrival Time: <input type="text" name="arrivalTime"></p>
+				<p>Departure Time: <input type="text" name="departureTime"></p>
+				<p>Fare: <input type="text" name="fare"></p>
+				<input type="submit" value="Edit">
+			</form>
+		</section>
 		<section>
 			<h2>Customer Service Message Service</h2>
 			<p>TODO: messaging features</p>
@@ -59,15 +79,15 @@
 		<section>
 			<h2>List of Train Schedules for a Given Station</h2>
 			<form action="produceList.jsp" method="post">
-				<p>Enter train station:<input type="text" name="station"></p>
+				<p>Enter train station: <input type="text" name="station"></p>
 				<input type="submit" value="Produce List">
 			</form>
 		</section>
 		<section>
 			<h2>List of Customers Reserved for Given Transit Line</h2>
 			<form action="produceList.jsp" method="post">
-				<p>Enter transit line name:<input type="text" name="route"></p>
-				<p>Enter date:<input type="text" name="date"></p>
+				<p>Enter transit line name: <input type="text" name="route"></p>
+				<p>Enter date: <input type="text" name="date"></p>
 				<input type="submit" value="Produce List">
 			</form>
 		</section>
