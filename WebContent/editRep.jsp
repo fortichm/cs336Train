@@ -34,7 +34,7 @@
 					
 					Statement stmt = con.createStatement();
 					//Insert statement into Customer Table
-					String delete = "UPDATE Employee SET password='" +password+"', FirstName='" +firstName+"', LastName='" +lastName+"' where username='" + username + "' AND SSN='" + SSN +"'";
+					String delete = "UPDATE Employee SET pword='" +password+"', FirstName='" +firstName+"', LastName='" +lastName+"' where username='" + username + "' AND SSN='" + SSN +"'";
 					
 					//Creating prepared statement
 					PreparedStatement ps = con.prepareStatement(delete);

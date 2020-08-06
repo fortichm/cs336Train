@@ -22,7 +22,7 @@
 				String pass = request.getParameter("employeePass");
 				
 				
-				String str = "SELECT * FROM Employee where username='" + user + "' and password='" + pass + "'";
+				String str = "SELECT * FROM Employee where username='" + user + "' and pword='" + pass + "' and JobRole='A' ";
 				
 				ResultSet res = stmt.executeQuery(str);
 				
@@ -47,10 +47,11 @@
 			}
 			
 		%>
-		
+		<h1>Customer Rep Functions</h1>
 		
 		<div id="registration">
-			<p>Add Customer Representative</p>
+			<h2>Add Customer Representative</h2>
+			<p>Enter Rep Info</p>
 			<form action = "custRepReg.jsp" method="post">
 				<p>
 					SSN:
@@ -77,7 +78,8 @@
 		</div>
 		
 		<div id="delete">
-			<p>Delete an active Customer Representative</p>
+			<h2>Delete an active Customer Representative</h2>
+			<p>Enter Rep Info</p>
 			<form action = "deleteRep.jsp" method="post">
 				<p>
 					Enter SSN:
@@ -93,7 +95,7 @@
 		</div>
 		
 		<div id="edit">
-			<p>Edit an active Customer Representative</p>
+			<h2>Edit an active Customer Representative</h2>
 			<form action = "editRep.jsp" method="post">
 				<p>
 					Enter their SSN:
@@ -120,6 +122,59 @@
 				<p><input type="submit" value="Edit"></p>
 			</form>
 		</div>
+		
+		<h1>Sales Inquiries</h1>
+		
+		<div id="Sales Report">
+			<h2>Obtain Sales Report Per Month</h2>
+			<form action = "editRep.jsp" method="post">	
+				<p>
+					Click here
+				</p>
+				<p><input type="submit" value="Obtain"></p>
+			</form>
+		</div>
+		
+		<div id="Res List">
+			<h2>List of Reservations</h2>
+			<form action = "editRep.jsp" method="post">	
+				<p>
+					Click here
+				</p>
+				<p><input type="submit" value="Obtain"></p>
+			</form>
+		</div>
+		
+		<div id="Rev List">
+			<h2>List of Revenue</h2>
+			<form action = "editRep.jsp" method="post">	
+				<p>
+					Click here
+				</p>
+				<p><input type="submit" value="Obtain"></p>
+			</form>
+		</div>
+		
+		<div id="Best Customer">
+			<h2>Best Customer</h2>
+			<form action = "editRep.jsp" method="post">	
+				<p>
+					Click here
+				</p>
+				<p><input type="submit" value="Obtain"></p>
+			</form>
+		</div>
+		
+		<div id="5 Active lines">
+			<h2>5 Most Active Train Lines</h2>
+			<form action = "editRep.jsp" method="post">	
+				<p>
+					Click here
+				</p>
+				<p><input type="submit" value="Obtain"></p>
+			</form>
+		</div>
+		
 		
 		
 		<p>

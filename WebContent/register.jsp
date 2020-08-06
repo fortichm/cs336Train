@@ -25,7 +25,7 @@
 				String email = request.getParameter("email");
 				
 				
-				String str = "SELECT * FROM Customer where username='" + username + "' OR EmailAddress='" + email +"'";
+				String str = "SELECT * FROM Customer where username='" + username + "' OR email='" + email +"'";
 				Statement stmt0 = con.createStatement();
 				ResultSet res = stmt0.executeQuery(str);
 				
@@ -38,7 +38,7 @@
 					//Create SQL statement
 					Statement stmt = con.createStatement();
 					//Insert statement into Customer Table
-					String insert = "INSERT INTO Customer(Username, Password, FirstName, LastName, EmailAddress)" 
+					String insert = "INSERT INTO Customer(username, pword, email, firstName, lastName)" 
 							+ "VALUES (?, ?, ?, ?, ?)";
 					
 					//Creating prepared statement
@@ -59,6 +59,7 @@
 				
 		
 				con.close();
+				out.print("Thank you "+firstName+" "+lastName+" you have registered with username: "+username);
 				
 			} catch (Exception e) {
 				out.print(e);

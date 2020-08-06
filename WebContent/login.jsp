@@ -22,7 +22,7 @@
 				String pass = request.getParameter("pass");
 				
 				
-				String str = "SELECT * FROM Customer where username='" + user + "' and password='" + pass + "'";
+				String str = "SELECT * FROM Customer where username='" + user + "' and pword='" + pass + "'";
 				
 				ResultSet res = stmt.executeQuery(str);
 				
@@ -55,13 +55,15 @@
 				</p>
 				<p>
 					Travel Date:
-					<input type="text" name="date">
+					<input type="text" name="date" value="YYYY-MM-DD">
 				</p>
-				<p>
-					Please indicate whether the ticket is for a:
-					"child", "senior", or someone who is "disabled",
-					for a discount:
-					<input type="text" name="discount">
+				<p> Discount if applicable:
+					<select name="disc" id="disc">
+					<option value="none"> none </option>
+					<option value="child"> Child </option>
+					<option value="Senior"> Senior </option>
+					<option value="Disabled"> Disabled </option>
+					</select> 
 				</p>
 				
 				<p> <input type="submit" value="Reserve"> </p>

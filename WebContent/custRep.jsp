@@ -22,7 +22,7 @@
 				String pass = request.getParameter("employeePass");
 				
 				
-				String str = "SELECT * FROM Employee where username='" + user + "' and password='" + pass + "'";
+				String str = "SELECT * FROM Employee where username='" + user + "' and pword='" + pass + "' and JobRole='CR'";
 				
 				ResultSet res = stmt.executeQuery(str);
 				

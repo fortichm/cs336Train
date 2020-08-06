@@ -23,6 +23,7 @@
 				String password = request.getParameter("newPass");
 				String firstName = request.getParameter("firstName");
 				String lastName = request.getParameter("lastName");
+				String role = "CR";
 				
 				
 				
@@ -39,8 +40,8 @@
 					//Create SQL statement
 					Statement stmt = con.createStatement();
 					//Insert statement into Customer Table
-					String insert = "INSERT INTO Employee(SSN, Username, Password, FirstName, LastName)" 
-							+ "VALUES (?, ?, ?, ?, ?)";
+					String insert = "INSERT INTO Employee(ssn, username, pword, firstName, lastName, JobRole)" 
+							+ "VALUES (?, ?, ?, ?, ?, ?)";
 					
 					//Creating prepared statement
 					PreparedStatement ps = con.prepareStatement(insert);
@@ -51,6 +52,7 @@
 					ps.setString(3,password);
 					ps.setString(4,firstName);
 					ps.setString(5,lastName);
+					ps.setString(6,role);
 					
 					//Running query
 					ps.executeUpdate();
