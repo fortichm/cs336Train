@@ -19,6 +19,7 @@
 				String origin = request.getParameter("origin");
 				String destination = request.getParameter("destination");
 				String date = request.getParameter("date");
+				date += "%";
 				String criteria = request.getParameter("sortBy");
 				//SQL query to get stop number on origin
 				String str = "SELECT ss.stop_no" 
@@ -54,11 +55,15 @@
 				+ " FROM Schedule_Station ss"
 				+ " INNER JOIN Station a ON ss.station_id = a.station_id"
 				+ " INNER JOIN Station b ON ss.next_station_id = b.station_id"
-				+ " WHERE ss.stop_no >= ? AND ss.stop_no <= ?";
+				+ " WHERE ss.stop_no >= ? AND ss.stop_no <= ?"
+				+ " AND departure LIKE ?"
+				+ " ORDER BY ?";
 				//Running the query
 				ps = con.prepareStatement(str);
 				ps.setInt(1, x);
 				ps.setInt(2, y);
+				ps.setString(3, date);
+				ps.setString(4, criteria);
 				result = ps.executeQuery();
 		%>
 		<table style="width:100%">

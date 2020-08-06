@@ -34,7 +34,7 @@
 				</p>
 				<p>
 					Travel Date:
-					<input type="text" name="date">
+					<input type="text" name="date" value="YYYY-MM-DD">
 				</p>
 				<p> Sort by:
 					<select name="sortBy" id="sortBy">
