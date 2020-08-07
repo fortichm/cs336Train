@@ -79,10 +79,10 @@
 				<input type="submit" value="Save">
 			</form>
 		</div>
-		<section>
+		<div id="messaging">
 			<h2>Customer Service Message Service</h2>
 			<p>TODO: messaging features</p>
-		</section>
+		</div>
 		<div id=listByStation>
 			<h2>List of Train Schedules for a Given Station</h2>
 			<form action="listByStation.jsp" method="post">
@@ -90,14 +90,14 @@
 				<input type="submit" value="Produce List">
 			</form>
 		</div>
-		<section>
+		<div>
 			<h2>List of Customers Reserved for Given Transit Line</h2>
-			<form action="produceList.jsp" method="post">
+			<form action="listCustomersByLine.jsp" method="post">
 				<p>Enter transit line name: <input type="text" name="route"></p>
 				<p>Enter date: <input type="text" name="date"></p>
 				<input type="submit" value="Produce List">
 			</form>
-		</section>
+		</div>
 		<form action="index.jsp" method="post">
 			<button type="submit">Log Out</button>
 		</form>
