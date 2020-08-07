@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Login successful!</title>
+		<title>Admin Page</title>
 	</head>
 		<%
 			try {
@@ -47,7 +47,7 @@
 			}
 			
 		%>
-		<h1>Customer Rep Functions</h1>
+		<h1>Admin Functions</h1>
 		
 		<div id="registration">
 			<h2>Add Customer Representative</h2>
@@ -123,56 +123,160 @@
 			</form>
 		</div>
 		
+		
+		
 		<h1>Sales Inquiries</h1>
 		
 		<div id="Sales Report">
-			<h2>Obtain Sales Report Per Month</h2>
-			<form action = "editRep.jsp" method="post">	
-				<p>
-					Click here
-				</p>
-				<p><input type="submit" value="Obtain"></p>
-			</form>
+			<%
+			try {
+				//Getting database connection
+				ApplicationDB db = new ApplicationDB();
+				Connection con = db.getConnection();
+				String str = "select t.purchase_date, t.res_no, p.total_fare from Ticket_Purchases p, Ticket t where t.res_no=p.res_no";
+				//Creating prepared statement
+				PreparedStatement ps = con.prepareStatement(str);
+				ResultSet result = ps.executeQuery();
+			%>
+			<h2>Sales Report Per Month</h2>
+				<table style="width:100%">
+			<tr>
+			<%
+				while(result.next()) {
+			%>
+			<td><%=result.getString("t.res_no") %></td>	
+			<td><%=result.getString("total_fare") %></td>
+			<td><%=result.getString("purchase_date") %></td>
+				
+			</tr>
+			<%
+				}
+				db.closeConnection(con);
+				ps.close();
+				con.close();
+			%>
+			</table>
+			<%	
+			} catch (Exception e) {
+				out.print(e);
+			}
+		%>
+		
 		</div>
+		
+		
+		
 		
 		<div id="Res List">
 			<h2>List of Reservations</h2>
-			<form action = "editRep.jsp" method="post">	
-				<p>
-					Click here
+			<h3>By Transit Line or Customer</h3>
+			
+			<form action="resList.jsp" method="post">
+				<p> Select:
+					<select name="sortBy" id="sortBy">
+					<option value="Customer"> Customer </option>
+					<option value="Line"> Line </option>
+					</select> 
 				</p>
-				<p><input type="submit" value="Obtain"></p>
+				<p>
+					Line or Username:
+					<input type="text" name="search" >
+				</p>			
+				<button type=submit>Search</button>
 			</form>
 		</div>
+		
+		
 		
 		<div id="Rev List">
 			<h2>List of Revenue</h2>
-			<form action = "editRep.jsp" method="post">	
-				<p>
-					Click here
+			<h3>By Transit Line or Customer</h3>
+			
+			<form action="revList.jsp" method="post">
+				<p> Select:
+					<select name="sortBy" id="sortBy">
+					<option value="Customer"> Customer </option>
+					<option value="Line"> Line </option>
+					</select> 
 				</p>
-				<p><input type="submit" value="Obtain"></p>
+				<p>
+					Line or Username:
+					<input type="text" name="search" >
+				</p>			
+				<button type=submit>Search</button>
 			</form>
 		</div>
 		
+		
+		
 		<div id="Best Customer">
 			<h2>Best Customer</h2>
-			<form action = "editRep.jsp" method="post">	
-				<p>
-					Click here
-				</p>
-				<p><input type="submit" value="Obtain"></p>
-			</form>
+			<%
+			try {
+				//Getting database connection
+				ApplicationDB db = new ApplicationDB();
+				Connection con = db.getConnection();
+				String str = "select * from Ticket_Purchases";
+				//Creating prepared statement
+				PreparedStatement ps = con.prepareStatement(str);
+				ResultSet result = ps.executeQuery();
+			%>
+			<%
+				while(result.next()) {
+			%>
+			<table style="width:100%">
+			<tr>
+				<td><%=result.getString("username") %></td>
+				
+			</tr>
+			<%
+				}
+				db.closeConnection(con);
+				ps.close();
+				con.close();
+			%>
+			</table>
+			<%	
+			} catch (Exception e) {
+				out.print(e);
+			}
+			
+		%>
 		</div>
 		
 		<div id="5 Active lines">
 			<h2>5 Most Active Train Lines</h2>
-			<form action = "editRep.jsp" method="post">	
-				<p>
-					Click here
-				</p>
-				<p><input type="submit" value="Obtain"></p>
-			</form>
+			<%
+			try {
+				//Getting database connection
+				ApplicationDB db = new ApplicationDB();
+				Connection con = db.getConnection();
+				String str = "select transit_line from Reservations";
+				//Creating prepared statement
+				PreparedStatement ps = con.prepareStatement(str);
+				ResultSet result = ps.executeQuery();
+			%>
+			<%
+				while(result.next()) {
+			%>
+			<table style="width:100%">
+			<tr>
+				<td><%=result.getString("transit_line") %></td>
+			</tr>
+			<%
+				}
+				db.closeConnection(con);
+				ps.close();
+				con.close();
+			%>
+			</table>
+			<%	
+			} catch (Exception e) {
+				out.print(e);
+			}
+			
+		%>
+			
 		</div>
 		
 		
