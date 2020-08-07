@@ -16,32 +16,35 @@
 				Connection con = db.getConnection();
 				
 				//Getting parameters
-				int trainID = Integer.valueOf(request.getParameter("train_id"));
-				String name = request.getParameter("transit_line");
+				int stationID = Integer.valueOf(request.getParameter("station_id"));
+				String name = request.getParameter("station_name");
+				String city = request.getParameter("city");
+				String state = request.getParameter("state");
 				
-				String str = "SELECT * FROM Schedule_Station WHERE train_id = ? and transit_line = ?";
+				String str = "SELECT * FROM Station WHERE station_id = ?";
 				PreparedStatement ps = con.prepareStatement(str);
-				ps.setInt(1, trainID);
-				ps.setString(2, name);
+				ps.setInt(1, stationID);
 				ResultSet result = ps.executeQuery();
 				
 				if(result.next()){
-					str = "DELETE FROM Schedule_Station WHERE train_id = ? AND transit_line = ?";
+					out.println("Station already part of service!");
+					ps.close();
+					result.close();
+				}else{
+					//Insert statement into Customer Table
+					str = "INSERT INTO Station(station_id, station_name, city, state) VALUES (?,?,?,?)";
 					ps = con.prepareStatement(str);
-					ps.setInt(1, trainID);
+					//Adding parameters to statement
+					ps.setInt(1, stationID);
 					ps.setString(2, name);
-					//Run the query
+					ps.setString(3, city);
+					ps.setString(4, state);
+					//Running query
 					ps.executeUpdate();
 					ps.close();
 					result.close();
 					out.print("<h2>");
 					out.print("Operation successful!");
-					out.print("</h2>");
-				}else{
-					ps.close();
-					result.close();
-					out.print("<h2>");
-					out.print("Train and associated route does not exist!");
 					out.print("</h2>");
 				} 
 				//Closing connection

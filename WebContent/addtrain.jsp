@@ -17,31 +17,28 @@
 				
 				//Getting parameters
 				int trainID = Integer.valueOf(request.getParameter("train_id"));
-				String name = request.getParameter("transit_line");
 				
-				String str = "SELECT * FROM Schedule_Station WHERE train_id = ? and transit_line = ?";
+				String str = "SELECT * FROM Train WHERE train_id = ?";
 				PreparedStatement ps = con.prepareStatement(str);
 				ps.setInt(1, trainID);
-				ps.setString(2, name);
 				ResultSet result = ps.executeQuery();
 				
 				if(result.next()){
-					str = "DELETE FROM Schedule_Station WHERE train_id = ? AND transit_line = ?";
+					out.println("Train already part of fleet!");
+					ps.close();
+					result.close();
+				}else{
+					//Insert statement into Customer Table
+					str = "INSERT INTO Train(train_id) VALUES (?)";
 					ps = con.prepareStatement(str);
+					//Adding parameters to statement
 					ps.setInt(1, trainID);
-					ps.setString(2, name);
-					//Run the query
+					//Running query
 					ps.executeUpdate();
 					ps.close();
 					result.close();
 					out.print("<h2>");
 					out.print("Operation successful!");
-					out.print("</h2>");
-				}else{
-					ps.close();
-					result.close();
-					out.print("<h2>");
-					out.print("Train and associated route does not exist!");
 					out.print("</h2>");
 				} 
 				//Closing connection

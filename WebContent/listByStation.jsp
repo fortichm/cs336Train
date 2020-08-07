@@ -16,55 +16,28 @@
 				ApplicationDB db = new ApplicationDB();
 				Connection con = db.getConnection();
 				
-				String origin = request.getParameter("origin");
-				String destination = request.getParameter("destination");
-				String date = request.getParameter("date");
-				date += "%";
-				String criteria = request.getParameter("sortBy");
-				//SQL query to get stop number on origin
-				String str = "SELECT ss.stop_no" 
-				+ " FROM Schedule_Station ss"
-				+ " INNER JOIN Station a ON ss.station_id = a.station_id"
-				+ " INNER JOIN Station b ON ss.next_station_id = b.station_id"
-				+ " WHERE a.station_name = ?";
-				//Creating prepared statement
-				PreparedStatement ps = con.prepareStatement(str);
-				ps.setString(1, origin);
-				ResultSet result = ps.executeQuery();
-				int x = 0;
-				if (result.next()) {
-					x = result.getInt("stop_no");
-				}
-				//SQL query to get stop number on destination
-				str = "SELECT ss.stop_no" 
-				+ " FROM Schedule_Station ss"
-				+ " INNER JOIN Station a ON ss.station_id = a.station_id"
-				+ " INNER JOIN Station b ON ss.next_station_id = b.station_id"
-				+ " WHERE b.station_name = ?";
-				ps = con.prepareStatement(str);
-				ps.setString(1, destination);
-				result = ps.executeQuery();
-				int y = 0;
-				if (result.next()) {
-					y = result.getInt("stop_no");
-				}
+				String station = request.getParameter("station");
 				//The SQL query to display table
-				str = "SELECT ss.transit_line, ss.train_id,"
+				String str = "SELECT ss.transit_line, ss.train_id,"
 				+ " a.station_name origin, b.station_name destination, ss.departure, ss.arrival,"
 				+ " ROUND(ss.fare, 2) adult, ROUND(ss.fare*0.75, 2) child, ROUND(ss.fare*0.65, 2) senior, ROUND(ss.fare*0.50, 2) disabled, TIMESTAMPDIFF(MINUTE, departure, arrival) travel_time"
 				+ " FROM Schedule_Station ss"
 				+ " INNER JOIN Station a ON ss.station_id = a.station_id"
 				+ " INNER JOIN Station b ON ss.next_station_id = b.station_id"
-				+ " WHERE ss.stop_no >= ? AND ss.stop_no <= ?"
-				+ " AND departure LIKE ?"
-				+ " ORDER BY ?";
+				+ " WHERE a.station_name = ?"
+				+ " UNION"
+				+ " SELECT ss.transit_line, ss.train_id,"
+				+ " a.station_name origin, b.station_name destination, ss.departure, ss.arrival,"
+				+ " ROUND(ss.fare, 2) adult, ROUND(ss.fare*0.75, 2) child, ROUND(ss.fare*0.65, 2) senior, ROUND(ss.fare*0.50, 2) disabled, TIMESTAMPDIFF(MINUTE, departure, arrival) travel_time"
+				+ " FROM Schedule_Station ss"
+				+ " INNER JOIN Station a ON ss.station_id = a.station_id"
+				+ " INNER JOIN Station b ON ss.next_station_id = b.station_id"
+				+ " WHERE b.station_name = ?";
 				//Running the query
-				ps = con.prepareStatement(str);
-				ps.setInt(1, x);
-				ps.setInt(2, y);
-				ps.setString(3, date);
-				ps.setString(4, criteria);
-				result = ps.executeQuery();
+				PreparedStatement ps = con.prepareStatement(str);
+				ps.setString(1, station);
+				ps.setString(2, station);
+				ResultSet result = ps.executeQuery();
 		%>
 		<table style="width:100%">
 			<tr>
@@ -107,6 +80,6 @@
 				out.print(e);
 			}
 		%>
-		<p><a href="index.jsp" >Click here to return to main page.</a></p>
+		<p><a href="custRep.jsp" >Return to customer representative page.</a></p>
 	</body>
 </html>
