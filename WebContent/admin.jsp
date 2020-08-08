@@ -201,39 +201,50 @@
 		</div>
 		
 		<div id="5 Active lines">
-			<h2>5 Most Active Train Lines</h2>
-			<%
-			try {
-				//Getting database connection
-				ApplicationDB db = new ApplicationDB();
-				Connection con = db.getConnection();
-				String str = "select distinct transit_line from Reservations";
-				//Creating prepared statement
-				PreparedStatement ps = con.prepareStatement(str);
-				ResultSet result = ps.executeQuery();
-			%>
-			<%
-				while(result.next()) {
-			%>
-			<table style="width:100%">
-			<tr>
-				<td><%=result.getString("transit_line") %></td>
-			</tr>
-			<%
-				}
-				db.closeConnection(con);
-				ps.close();
-				con.close();
-			%>
-			</table>
-			<%	
-			} catch (Exception e) {
-				out.print(e);
-			}
-			
-		%>
-			
-		</div>
+            <h2>5 Most Active Train Lines</h2>
+            <%
+            try {
+                //Getting database connection
+                ApplicationDB db = new ApplicationDB();
+                Connection con = db.getConnection();
+                String str = "select ss.transit_line, count(*) "
+                        +"from Schedule_Station ss "
+                        +"inner join Station a on ss.station_id = a.station_id "
+                        +"inner join Station b on ss.next_station_id = b.station_id "
+                        +"group by ss.transit_line "
+                        +"order by count(*) DESC "
+                        +"LIMIT 5"; 
+                //Creating prepared statement
+                PreparedStatement ps = con.prepareStatement(str);
+                ResultSet result = ps.executeQuery();
+            %>
+            <table style="width:100%">
+            <tr>
+                <td>Transit Line</td>
+                <td>Reservations</td>
+            <%
+                while(result.next()) {
+            %>
+            <tr>
+                <td><%=result.getString("transit_line") %></td>
+                <td><%=result.getInt("count(*)") %></td>
+            </tr>
+            <%
+                }
+                db.closeConnection(con);
+                ps.close();
+                con.close();
+            %>
+            </table>
+            <%    
+            } catch (Exception e) {
+                out.print(e);
+            }
+            
+        %>
+            
+    
+    </div>
 		
 		
 		
