@@ -9,39 +9,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Customer Representative</title>
 	</head>
-		<%
-			try {
-				//Get database connection
-				ApplicationDB db = new ApplicationDB();
-				Connection con = db.getConnection();
-				
-				//Create SQL statement
-				Statement stmt = con.createStatement();
-				
-				String user = request.getParameter("employeeUser");
-				String pass = request.getParameter("employeePass");
-				
-				
-				String str = "SELECT * FROM Employee where username='" + user + "' and pword='" + pass + "' and JobRole='CR'";
-				
-				ResultSet res = stmt.executeQuery(str);
-				
-				if(res.next()){
-					out.println("Welcome Employee " + user + " logged in");
-				}else{
-					out.println("invalid username or password, try again");
-				}
-				
-				res.close();
-				stmt.close();
-				con.close();
-				
-			}catch(Exception e) {
-				out.print(e);
-				out.println("Error in login");
-			}
-			
-		%>
+		
 		<div id="repFunctions">
 			<h2>Train Schedule Editor</h2>
 			<h3>Add Train Service Information</h3>

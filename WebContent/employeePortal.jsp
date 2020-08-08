@@ -13,7 +13,7 @@
 	<body>
 		<div id="customerRepLogin">
 			<p>Customer Representatives, please login here:</p>
-			<form action="custRep.jsp" method="post">
+			<form action="repCheck.jsp" method="post">
 				<p>
 					Username:
 					<input type="text" name="employeeUser">
@@ -27,7 +27,7 @@
 		</div>
 		<div id="adminLogin">
 			<p>Administrator, please login here:</p>
-			<form action="admin.jsp" method="post">
+			<form action="adminCheck.jsp" method="post">
 				<p>
 					Username:
 					<input type="text" name="employeeUser">

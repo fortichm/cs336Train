@@ -53,8 +53,37 @@
 						<%	
 						
 					}else if(criteria.charAt(0)=='C'){
-						out.print(param+"'s reservations");
+						out.print("User: "+param+"'s reservations");
+						String str = "SELECT * FROM Reservations r WHERE r.res_no IN ( SELECT r.res_no FROM Ticket_Purchases t WHERE r.res_no = t.res_no AND username ='" + param + "')";
+						//Creating prepared statement
+						PreparedStatement ps = con.prepareStatement(str);
+						ResultSet result = ps.executeQuery();
+						%>
+						<table style="width:100%">
+						<tr>
+							<td>Train ID</td>
+							<td>Transit Lint</td>
+							<td>Res Num</td>
+							
+							
+						</tr>
 						
+						<%
+							while(result.next()) {
+						%>
+							<tr>
+								<td><%=result.getInt("train_id") %></td>
+								<td><%=result.getString("transit_line") %></td>
+								<td><%=result.getInt("res_no") %> </td>
+								
+							</tr>
+							<%
+							}
+							db.closeConnection(con);
+							ps.close();
+						%>
+						</table>
+						<%	
 					}
 					
 		
