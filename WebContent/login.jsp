@@ -13,6 +13,7 @@
 		<div id="reservation">
 			<h2>Make a reservation: </h2>
 			<form action="reservCheckOut.jsp" method ="post">
+				<p> Transit line: <input type="text" name="transit_line"></p>
 				<p>
 					Origin:
 					<input type="text" name="origin">
@@ -26,15 +27,15 @@
 					<input type="text" name="date" value="YYYY-MM-DD">
 				</p>
 				<p> Discount if applicable:
-					<select name="disc" id="disc">
+					<select name="discount" id="disc">
 					<option value="none"> none </option>
 					<option value="child"> Child </option>
-					<option value="Senior"> Senior </option>
-					<option value="Disabled"> Disabled </option>
+					<option value="senior"> Senior </option>
+					<option value="disabled"> Disabled </option>
 					</select> 
 				</p>
-				
-				<p> <input type="submit" value="Reserve"> </p>
+				<p>Sign username: <input type="text" name="username"></p>
+				<p><input type="submit" value="Reserve"> </p>
 			</form>
 		</div>
 		
