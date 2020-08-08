@@ -32,16 +32,17 @@
 						%>
 						<table style="width:100%">
 						<tr>
-							<th>Res Num</th>
-							<th>Fare</th>
+							<td>Res Num</td>
+							<td>Fare</td>
 							
 						</tr>
-						</table>
+						
 						<%
 							while(result.next()) {
-						%><table style="width:100%">
+						%>
 							<tr>
-								<td><td><%=result.getInt("res_no") %>  $<%=result.getFloat("total_fare") %></td>
+								<td><%=result.getInt("res_no") %></td> 
+								<td> $ <%=result.getFloat("total_fare")%> </td>
 							</tr>
 							<%
 							}

@@ -30,16 +30,19 @@
 						%>
 						<table style="width:100%">
 						<tr>
-							<th>Res Num</th>
-							<th>Train ID</th>
+							<td>Train ID</td>
+							<td>Res Num</td>
+							
 							
 						</tr>
-						</table>
+						
 						<%
 							while(result.next()) {
-						%><table style="width:100%">
+						%>
 							<tr>
-								<td><td><%=result.getInt("res_no") %> <%=result.getInt("train_id") %></td>
+								<td><%=result.getInt("train_id") %></td>
+								<td><%=result.getInt("res_no") %> </td>
+								
 							</tr>
 							<%
 							}

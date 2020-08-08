@@ -216,17 +216,18 @@
 				//Getting database connection
 				ApplicationDB db = new ApplicationDB();
 				Connection con = db.getConnection();
-				String str = "select * from Ticket_Purchases";
+				String str = "SELECT username, SUM(total_fare) FROM Ticket_Purchases GROUP BY username HAVING SUM(total_fare) = (SELECT MAX(total_fare)  FROM (SELECT SUM(total_fare)  total_fare FROM Ticket_Purchases GROUP BY username) tab) ";
 				//Creating prepared statement
 				PreparedStatement ps = con.prepareStatement(str);
 				ResultSet result = ps.executeQuery();
 			%>
 			<%
-				while(result.next()) {
+				if(result.next()) {
 			%>
 			<table style="width:100%">
 			<tr>
-				<td><%=result.getString("username") %></td>
+				<td>Username: <%=result.getString("username") %></td>
+				<td>Total Fare: $<%=result.getFloat("SUM(total_fare)") %></td>
 				
 			</tr>
 			<%
@@ -251,7 +252,7 @@
 				//Getting database connection
 				ApplicationDB db = new ApplicationDB();
 				Connection con = db.getConnection();
-				String str = "select transit_line from Reservations";
+				String str = "select distinct transit_line from Reservations";
 				//Creating prepared statement
 				PreparedStatement ps = con.prepareStatement(str);
 				ResultSet result = ps.executeQuery();
