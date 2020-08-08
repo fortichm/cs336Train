@@ -43,7 +43,7 @@
 			
 		%>
 		<div id="reservation">
-			<p>Make a reservation: </p>
+			<h2>Make a reservation: </h2>
 			<form action="reservCheckOut.jsp" method ="post">
 				<p>
 					Origin:
@@ -70,13 +70,13 @@
 			</form>
 		</div>
 		
-		<p> 
-		View Current and Past Reservations
+		<div id="history">
+		<h2>View Current and Past Reservations</h2>
 		<input type="submit" value="View"> 
-		</p>
+		</div>
 		
 		<div id="cancelReserv">
-			<p>Cancel Reservation</p>
+			<h2>Cancel Reservation</h2>
 			<form action="reservCheckOut.jsp" method="post">
 			
 				<p>
@@ -85,6 +85,18 @@
 				</p>
 				
 				<p> <input type="submit" value="Cancel"> </p>
+			</form>
+		</div>
+		
+		<div id="customerService">
+			<h2>Customer Service Forum</h2>
+			<form action="viewForum.jsp" method="post">
+			<button type="submit">View Customer Service Forum</button>
+			</form>
+			<form action="searchForum.jsp" method="post">
+			<h3>Search forum by keyword</h3>
+			<input type="text" name="keyword" value="Enter keyword here">
+			<input type="submit" value="Search">
 			</form>
 		</div>
 		

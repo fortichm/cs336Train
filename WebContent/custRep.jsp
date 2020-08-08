@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Login successful!</title>
+		<title>Customer Representative</title>
 	</head>
 		<%
 			try {
@@ -81,7 +81,9 @@
 		</div>
 		<div id="messaging">
 			<h2>Customer Service Message Service</h2>
-			<p>TODO: messaging features</p>
+			<form action="showMessages.jsp" method="post">
+			<button type="submit">View Customer Service Forum</button>
+			</form>
 		</div>
 		<div id=listByStation>
 			<h2>List of Train Schedules for a Given Station</h2>

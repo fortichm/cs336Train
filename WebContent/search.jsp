@@ -57,7 +57,7 @@
 				+ " INNER JOIN Station b ON ss.next_station_id = b.station_id"
 				+ " WHERE ss.stop_no >= ? AND ss.stop_no <= ?"
 				+ " AND departure LIKE ?"
-				+ " ORDER BY ?";
+				+ " ORDER BY ? ASC";
 				//Running the query
 				ps = con.prepareStatement(str);
 				ps.setInt(1, x);
@@ -72,8 +72,8 @@
 				<th>Train ID</th>
 				<th>Origin</th>
 				<th>Destination</th>
-				<th>Arrival Time</th>
 				<th>Departure Time</th>
+				<th>Arrival Time</th>
 				<th>Travel Time</th>
 				<th>Adult Fare</th>
 				<th>Child Fare</th>
