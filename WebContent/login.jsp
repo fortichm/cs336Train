@@ -9,39 +9,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Login successful!</title>
 	</head>
-		<%
-			try {
-				//Get database connection
-				ApplicationDB db = new ApplicationDB();
-				Connection con = db.getConnection();
-				
-				//Create SQL statement
-				Statement stmt = con.createStatement();
-				
-				String user = request.getParameter("user");
-				String pass = request.getParameter("pass");
-				
-				
-				String str = "SELECT * FROM Customer where username='" + user + "' and pword='" + pass + "'";
-				
-				ResultSet res = stmt.executeQuery(str);
-				
-				if(res.next()){
-					out.println(user + " logged in");
-				}else{
-					out.println("invalid username or password, try again");
-				}
-				
-				res.close();
-				stmt.close();
-				con.close();
-				
-			}catch(Exception e) {
-				out.print(e);
-				out.println("Error in login");
-			}
-			
-		%>
+		
 		<div id="reservation">
 			<h2>Make a reservation: </h2>
 			<form action="reservCheckOut.jsp" method ="post">

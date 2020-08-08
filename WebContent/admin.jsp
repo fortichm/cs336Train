@@ -91,39 +91,31 @@
 		<h1>Sales Inquiries</h1>
 		
 		<div id="Sales Report">
-			<%
-			try {
-				//Getting database connection
-				ApplicationDB db = new ApplicationDB();
-				Connection con = db.getConnection();
-				String str = "select t.purchase_date, t.res_no, p.total_fare from Ticket_Purchases p, Ticket t where t.res_no=p.res_no";
-				//Creating prepared statement
-				PreparedStatement ps = con.prepareStatement(str);
-				ResultSet result = ps.executeQuery();
-			%>
-			<h2>Sales Report Per Month</h2>
-				<table style="width:100%">
-			<tr>
-			<%
-				while(result.next()) {
-			%>
-			<td><%=result.getString("t.res_no") %></td>	
-			<td><%=result.getString("total_fare") %></td>
-			<td><%=result.getString("purchase_date") %></td>
-				
-			</tr>
-			<%
-				}
-				db.closeConnection(con);
-				ps.close();
-				con.close();
-			%>
-			</table>
-			<%	
-			} catch (Exception e) {
-				out.print(e);
-			}
-		%>
+		
+			<h2>Total Revenue</h2>
+			<h3>By Month</h3>
+			
+			
+			<form action="salesReport.jsp" method="post">
+				<p> Select Month:
+					<select name="sortBy" id="sortBy">
+					<option value="1"> January </option>
+					<option value="2"> February </option>
+					<option value="3"> March </option>
+					<option value="4"> April </option>
+					<option value="5"> May </option>
+					<option value="6"> June </option>
+					<option value="7"> July </option>
+					<option value="8"> August </option>
+					<option value="9"> September </option>
+					<option value="10"> October </option>
+					<option value="11"> November </option>
+					<option value="12"> December </option>
+					
+					</select> 
+				</p>
+				<button type=submit>Obtain</button>
+			</form>
 		
 		</div>
 		

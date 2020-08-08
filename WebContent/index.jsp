@@ -49,7 +49,7 @@
 		<div id="customerLogin">
 			<h2>Customer Login Area</h2>
 			<p>Registered Customers, please login here:</p>
-			<form action="login.jsp" method="post">
+			<form action="custLogCheck.jsp" method="post">
 				<p>
 					Username:
 					<input type="text" name="user">

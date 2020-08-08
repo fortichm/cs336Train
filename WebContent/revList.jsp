@@ -22,7 +22,7 @@
 					String criteria = request.getParameter("sortBy");
 					
 					if(criteria.charAt(0)=='L'){
-						
+						out.print(param+"'s Revenue");
 						String str = "SELECT r.transit_line, t.purchase_date, tp.total_fare" 
 								+ " FROM Reservations r"
 								+ " INNER JOIN Ticket_Purchases tp ON tp.res_no = r.res_no"
@@ -60,6 +60,7 @@
 						
 						
 					}else if(criteria.charAt(0)=='C'){
+						out.print("User: "+param+"'s reservations");
 						String str = "SELECT tp.username, t.purchase_date, tp.total_fare" 
 								+ " FROM Reservations r"
 								+ " INNER JOIN Ticket_Purchases tp ON tp.res_no = r.res_no"
