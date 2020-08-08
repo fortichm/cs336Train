@@ -15,42 +15,40 @@
 				//Getting database connection
 				ApplicationDB db = new ApplicationDB();
 				Connection con = db.getConnection();
-				//SQL query to show entire forum
-				String str = "SELECT * FROM Messages m ORDER BY time_stamp";
+				//SQL query to show reservation history
+				String str = "SELECT r.res_no, tp.username, t.purchase_date, tp.total_fare" 
+				+ " FROM Reservations r"
+				+ " INNER JOIN Ticket_Purchases tp ON tp.res_no = r.res_no"
+				+ " INNER JOIN Ticket t ON t.res_no = r.res_no"
+				+ " WHERE tp.username = ?"
+				+ " ORDER BY purchase_date DESC";
 				//Create SQL statement
-				Statement stmt = con.createStatement();
-				ResultSet result = stmt.executeQuery(str);
+				String user = request.getParameter("username");
+				PreparedStatement ps = con.prepareStatement(str);
+				ps.setString(1, user);
+				ResultSet result = ps.executeQuery();
 		%>
 		<table style="width:100%">
 			<tr>
-				<td>Message ID</td>
-				<td>Owner</td>
-				<td>Message</td>
-				<td>Date</td>
+				<td>Reservation ID</td>
+				<td>Username</td>
+				<td>Purchase Date</td>
+				<td>Total Fare</td>
 			<%
 				while(result.next()) {
 			%>
 			<tr>
-				<td><%=result.getInt("message_id") %></td>
-				<td><%=result.getString("poster") %></td>
-				<td><%=result.getString("content") %></td>
-				<td><%=result.getString("time_stamp") %></td>
+				<td><%=result.getInt("res_no") %></td>
+				<td><%=result.getString("username") %></td>
+				<td><%=result.getString("purchase_date") %></td>
+				<td><%=result.getString("total_fare") %></td>
 			</tr>
 			<%
 				}
 				db.closeConnection(con);
-				stmt.close();
+				ps.close();
 			%>
 		</table>
-		<div id="askQuestions">
-			<form action="askQuestion.jsp" method="post">
-			<p>Enter message: </p>
-			<textarea name="message" rows="4" cols="50">500 CHARACTERS MAX</textarea>
-			<p>Sign username: </p>
-			<input type="text" name="user">
-			<input type="submit" value="Post Message">
-			</form>
-		</div>
 		<%	
 			} catch (Exception e) {
 				out.print(e);

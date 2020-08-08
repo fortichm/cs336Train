@@ -72,7 +72,10 @@
 		
 		<div id="history">
 		<h2>View Current and Past Reservations</h2>
+		<form action="reservationHistory.jsp" method="post">
+		<p>Enter username again: <input type="text" name="username"></p>
 		<input type="submit" value="View"> 
+		</form>
 		</div>
 		
 		<div id="cancelReserv">

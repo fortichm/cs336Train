@@ -16,8 +16,9 @@
 				ApplicationDB db = new ApplicationDB();
 				Connection con = db.getConnection();
 				//Getting keyword for search
-				String keyword = request.getParameter("keyword");
-				String formatted = "%" + keyword + "%";
+				String keyword = request.getParameter("keyword").trim();
+				String formatted = "%" + keyword;
+				formatted += "%";
 				
 				//SQL query for the search by keyword
 				String str = "SELECT * FROM Messages m WHERE content LIKE ? ORDER BY time_stamp";
@@ -33,8 +34,8 @@
 				<td>Message</td>
 				<td>Date</td>
 			<%
-				if (!result.next()) {
-					out.print("<h2>No messages contain keyword!</h2>");
+				if (!result.isBeforeFirst()) {
+					out.print("<h2>Search contained no results!</h2>");
 					ps.close();
 				} else {
 					while (result.next()) {
@@ -56,7 +57,7 @@
 			<form action="askQuestion.jsp" method="post">
 			<p>Enter message: </p>
 			<textarea name="message" rows="4" cols="50">500 CHARACTERS MAX</textarea>
-			<p>Enter username: </p>
+			<p>Sign username: </p>
 			<input type="text" name="user">
 			<input type="submit" value="Post Message">
 			</form>

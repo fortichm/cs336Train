@@ -46,7 +46,7 @@
 			<form action="sendMessage.jsp" method="post">
 			<p>Enter message: </p>
 			<textarea name="message" rows="4" cols="50">500 CHARACTERS MAX</textarea>
-			<p>Enter username: </p>
+			<p>Sign username: </p>
 			<input type="text" name="user">
 			<input type="submit" value="Post Message">
 			</form>
