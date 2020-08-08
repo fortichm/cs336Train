@@ -10,7 +10,7 @@
 	</head>
 	<body>
 	
-		<h2>List of Reservations</h2>
+		<h2>Revenue List</h2>
 	
 		<%
 			try {
@@ -23,26 +23,69 @@
 					
 					if(criteria.charAt(0)=='L'){
 						
-						
-					}else if(criteria.charAt(0)=='C'){
-						String str = "select res_no, total_fare from Ticket_Purchases where username='"+param+"'";
-						//Creating prepared statement
+						String str = "SELECT r.transit_line, t.purchase_date, tp.total_fare" 
+								+ " FROM Reservations r"
+								+ " INNER JOIN Ticket_Purchases tp ON tp.res_no = r.res_no"
+								+ " INNER JOIN Ticket t ON t.res_no = r.res_no"
+								+ " WHERE r.transit_line = ?"
+								+ " ORDER BY purchase_date DESC";
+								//Create SQL statement
 						PreparedStatement ps = con.prepareStatement(str);
+						ps.setString(1, param);
 						ResultSet result = ps.executeQuery();
 						%>
 						<table style="width:100%">
 						<tr>
-							<td>Res Num</td>
-							<td>Fare</td>
 							
-						</tr>
+							<td>Transit Line</td>
+							<td>Purchase Date</td>
+							<td>Total Fare</td>
 						
 						<%
 							while(result.next()) {
 						%>
 							<tr>
-								<td><%=result.getInt("res_no") %></td> 
-								<td> $ <%=result.getFloat("total_fare")%> </td>
+								
+								<td><%=result.getString("transit_line") %></td>
+								<td><%=result.getString("purchase_date") %></td>
+								<td><%=result.getString("total_fare") %></td>
+							</tr>
+							<%
+							}
+							db.closeConnection(con);
+							ps.close();
+						%>
+						</table>
+						<%	
+						
+						
+					}else if(criteria.charAt(0)=='C'){
+						String str = "SELECT tp.username, t.purchase_date, tp.total_fare" 
+								+ " FROM Reservations r"
+								+ " INNER JOIN Ticket_Purchases tp ON tp.res_no = r.res_no"
+								+ " INNER JOIN Ticket t ON t.res_no = r.res_no"
+								+ " WHERE tp.username = ?"
+								+ " ORDER BY purchase_date DESC";
+								//Create SQL statement
+						PreparedStatement ps = con.prepareStatement(str);
+						ps.setString(1, param);
+						ResultSet result = ps.executeQuery();
+						%>
+						<table style="width:100%">
+						<tr>
+							
+							<td>Username</td>
+							<td>Purchase Date</td>
+							<td>Total Fare</td>
+						
+						<%
+							while(result.next()) {
+						%>
+							<tr>
+								
+								<td><%=result.getString("username") %></td>
+								<td><%=result.getString("purchase_date") %></td>
+								<td><%=result.getString("total_fare") %></td>
 							</tr>
 							<%
 							}

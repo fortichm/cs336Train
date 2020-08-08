@@ -23,25 +23,31 @@
 					
 					if(criteria.charAt(0)=='L'){
 						out.print(param+"'s reservations");
-						String str = "select res_no, train_id from Reservations where transit_line='"+param+"'";
-						//Creating prepared statement
+						String str = "SELECT r.res_no, r.transit_line, t.purchase_date" 
+								+ " FROM Reservations r"
+								+ " INNER JOIN Ticket_Purchases tp ON tp.res_no = r.res_no"
+								+ " INNER JOIN Ticket t ON t.res_no = r.res_no"
+								+ " WHERE r.transit_line = ?"
+								+ " ORDER BY purchase_date DESC";
+								//Create SQL statement
 						PreparedStatement ps = con.prepareStatement(str);
+						ps.setString(1, param);
 						ResultSet result = ps.executeQuery();
 						%>
 						<table style="width:100%">
 						<tr>
-							<td>Train ID</td>
-							<td>Res Num</td>
+							<td>Reservation ID</td>
+							<td>Transit Line</td>
+							<td>Purchase Date</td>
 							
-							
-						</tr>
 						
 						<%
 							while(result.next()) {
 						%>
 							<tr>
-								<td><%=result.getInt("train_id") %></td>
-								<td><%=result.getInt("res_no") %> </td>
+								<td><%=result.getInt("res_no") %></td>
+								<td><%=result.getString("transit_line") %></td>
+								<td><%=result.getString("purchase_date") %></td>
 								
 							</tr>
 							<%
@@ -54,27 +60,31 @@
 						
 					}else if(criteria.charAt(0)=='C'){
 						out.print("User: "+param+"'s reservations");
-						String str = "SELECT * FROM Reservations r WHERE r.res_no IN ( SELECT r.res_no FROM Ticket_Purchases t WHERE r.res_no = t.res_no AND username ='" + param + "')";
-						//Creating prepared statement
+						String str = "SELECT r.res_no, tp.username, t.purchase_date" 
+								+ " FROM Reservations r"
+								+ " INNER JOIN Ticket_Purchases tp ON tp.res_no = r.res_no"
+								+ " INNER JOIN Ticket t ON t.res_no = r.res_no"
+								+ " WHERE tp.username = ?"
+								+ " ORDER BY purchase_date DESC";
+								//Create SQL statement
 						PreparedStatement ps = con.prepareStatement(str);
+						ps.setString(1, param);
 						ResultSet result = ps.executeQuery();
 						%>
 						<table style="width:100%">
 						<tr>
-							<td>Train ID</td>
-							<td>Transit Lint</td>
-							<td>Res Num</td>
+							<td>Reservation ID</td>
+							<td>Username</td>
+							<td>Purchase Date</td>
 							
-							
-						</tr>
 						
 						<%
 							while(result.next()) {
 						%>
 							<tr>
-								<td><%=result.getInt("train_id") %></td>
-								<td><%=result.getString("transit_line") %></td>
-								<td><%=result.getInt("res_no") %> </td>
+								<td><%=result.getInt("res_no") %></td>
+								<td><%=result.getString("username") %></td>
+								<td><%=result.getString("purchase_date") %></td>
 								
 							</tr>
 							<%
